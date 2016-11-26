@@ -10,8 +10,8 @@
 
 bool SPgSQL::s_dolog;
 
-SPgSQL::SPgSQL(const string &database, const string &host, const string& port, const string &user, 
-               const string &password)
+SPgSQL::SPgSQL(const string &database, const string &host, const string& port, const string &user,
+               const string &password, const string &extra_connection_args)
 {
   d_db=0;
   d_connectstr="";
@@ -27,6 +27,9 @@ SPgSQL::SPgSQL(const string &database, const string &host, const string& port, c
 
   if(!port.empty())
     d_connectstr+=" port="+port;
+
+  if(!extra_connection_args.empty())
+    d_connectstr+=" " + extra_connection_args;
 
   d_connectlogstr=d_connectstr;
 
